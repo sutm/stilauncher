@@ -38,7 +38,7 @@
             <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Content="Stations:"/>
             <!--<TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,5,0" Text="{Binding PlatformViewModel.IntegraPath, Mode=TwoWay}" />-->
             <!--<TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,5,0" Text="{Binding PlatformViewModel.OTFPath, Mode=TwoWay}" />-->
-            <local:FileInputBox Grid.Row="0" Grid.Column="1" FileName="{Binding PlatformViewModel.IntegraPath, Mode=TwoWay}" Margin="0,5,5,0"></local:FileInputBox>
+            <local:FolderInputBox Grid.Row="0" Grid.Column="1" FolderName="{Binding PlatformViewModel.IntegraPath, Mode=TwoWay}" Margin="0,5,5,0"></local:FolderInputBox>
             <local:FileInputBox Grid.Row="1" Grid.Column="1" FileName="{Binding PlatformViewModel.OTFPath, Mode=TwoWay}" Margin="0,5,5,0"></local:FileInputBox>
             <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5,5,0" />
             
