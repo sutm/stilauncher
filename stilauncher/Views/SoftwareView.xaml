@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="stilauncher.Views.SoftwareView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFUserControl;assembly=WPFUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Content="Server Folder:"/>
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Content="Version:"/>
+
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,5,5,0" 
+                  SelectionChanged="ServerFolder_SelectionChanged"
+                  ItemsSource="{Binding ServerFolder}">
+        </ComboBox>
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,5,5,0"></ComboBox>
+        <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" Content="Include Beta"/>
+        
+        
+    </Grid>
+</UserControl>

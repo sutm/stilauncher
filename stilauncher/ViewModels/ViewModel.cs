@@ -10,18 +10,9 @@ using System.Collections.ObjectModel;
 
 namespace stilauncher.ViewModels
 {
-    class ViewModel : INotifyPropertyChanged
+    class ViewModel : ViewModelBase
     {
         private Platform platform;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
         public ViewModel()
         {
