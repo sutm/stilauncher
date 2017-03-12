@@ -8,8 +8,8 @@
 
     <Window.Resources>
         <DataTemplate x:Key="ConfigListBoxTemplate" >
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Text="{Binding Path=Name}" FontSize="20" FontWeight="Bold" />
+            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+                <TextBlock Text="{Binding Path=Name}" FontSize="13" FontWeight="Bold" />
                 <TextBlock Text="{Binding Path=IntegraFolder}" />
                 <TextBlock Text="{Binding Path=OTFFolder}" />
                 <Button Content="Delete" Click="DeleteConfig_Clicked"/>
@@ -34,7 +34,7 @@
             <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
 
-        <DockPanel>
+        <DockPanel Background="AliceBlue">
             <Grid DockPanel.Dock="Top" >
                 <Rectangle Fill="AliceBlue"></Rectangle>
                 <TextBlock Margin="5" HorizontalAlignment="Center" FontSize="18">
@@ -42,13 +42,13 @@
                 </TextBlock>
             </Grid>
             <Button DockPanel.Dock="Bottom" Name="AddBtn" Content="Add" Margin="20" Width="80"></Button>
-            <ListBox Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True"
-                Name="ConfigListBox" ItemsSource="{Binding Path=ConfigList}" ItemTemplate="{StaticResource ConfigListBoxTemplate}" >
+            <ListBox Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True" Background="AliceBlue" 
+                Name="ConfigListBox" ItemsSource="{Binding Path=ConfigViewModel.ConfigList}" ItemTemplate="{StaticResource ConfigListBoxTemplate}" >
             </ListBox>
         </DockPanel>
         
         <StackPanel Grid.Column="1">
-            <ListView Margin="0,5,5,0" ItemsSource="{Binding SoftwareVersions}" >
+            <ListView Margin="0,5,5,20" MinHeight="100" ItemsSource="{Binding Path=SoftwareViewModel.SoftwareVersions}" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Software" DisplayMemberBinding="{Binding Name}" />

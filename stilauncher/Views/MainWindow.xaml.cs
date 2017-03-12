@@ -28,7 +28,7 @@ namespace stilauncher
         {
             InitializeComponent();
 
-            this.DataContext = new ViewModels.ViewModel();
+            this.DataContext = new ViewModels.MainViewModel();
         }
 
         private void ShowDownload(object sender, RoutedEventArgs e)
