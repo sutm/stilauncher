@@ -17,87 +17,38 @@
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
 
-    <DockPanel>
-        <Grid DockPanel.Dock="Right">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
-            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Content="Integra:"/>
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Content="OTF:"/>
-            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Content="Stations:"/>
-            <!--<TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,5,0" Text="{Binding PlatformViewModel.IntegraPath, Mode=TwoWay}" />-->
-            <!--<TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,5,0" Text="{Binding PlatformViewModel.OTFPath, Mode=TwoWay}" />-->
-            <uc:FolderInputBox Grid.Row="0" Grid.Column="1" FolderName="{Binding PlatformViewModel.IntegraPath, Mode=TwoWay}" Margin="0,5,5,0"></uc:FolderInputBox>
-            <uc:FolderInputBox Grid.Row="1" Grid.Column="1" FolderName="{Binding PlatformViewModel.OTFPath, Mode=TwoWay}" Margin="0,5,5,0"></uc:FolderInputBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5,5,0" />
-            
-            <Button Grid.Row="3" Grid.Column="0" Name="RefreshBtn" Width="35" Height="35" Margin="5,5,5,5">
-                <Rectangle Width="15" Height="15"
-                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_refresh}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <Button.ToolTip>
-                    <ToolTip>Refresh</ToolTip>
-                </Button.ToolTip>
-            </Button>
-
-            <ListView Grid.Row="3" Grid.Column="2" Margin="0,5,5,0" ItemsSource="{Binding SoftwareVersions}" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Software" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" />
-                        <GridViewColumn Header="Build Time" DisplayMemberBinding="{Binding BuildTime}" />
-                        <GridViewColumn Header="Protocol" DisplayMemberBinding="{Binding Protocol}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            
-            <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,5,0" Orientation="Horizontal" Background="AliceBlue">
-                <Button Name="IntegraBtn" Content="Integra" Margin="2,4,2,0" MinWidth="80"></Button>
-                <Button Name="OtfBtn" Content="Otf" Margin="2" MinWidth="80"></Button>
-                <Button Name="IntegraConfigBtn" Content="IntegraConfig" Margin="2" MinWidth="80"></Button>
-                <Button Name="DebugLogBtn" Content="DebugLog" Margin="2" MinWidth="80"></Button>
-            </StackPanel>
-
-            <Button Grid.Row="4" Grid.Column="0" Name="DownloadBtn" Width="35" Height="35" Margin="5,5,5,5"
-                    Click="ShowDownload">
-                <Rectangle Width="15" Height="15"
-                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_download}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <Button.ToolTip>
-                    <ToolTip>Download</ToolTip>
-                </Button.ToolTip>
-            </Button>
-            
-            <controls:MetroAnimatedTabControl Grid.Row="5" Grid.Column="1">
-                <TabItem Header="Integra">
-                    <local:SoftwareView></local:SoftwareView>
-                </TabItem>
-                <TabItem Header="OTF">
-                    Get OTF
-                </TabItem>
-                <TabItem Header="Reports">
-                    Get Reports
-                </TabItem>
-            </controls:MetroAnimatedTabControl>
-        </Grid>
+    <StackPanel>
+        <local:EditView></local:EditView>
         
-    </DockPanel>
+        <ListView Grid.Row="3" Grid.Column="2" Margin="0,5,5,0" ItemsSource="{Binding SoftwareVersions}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Software" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" />
+                    <GridViewColumn Header="Build Time" DisplayMemberBinding="{Binding BuildTime}" />
+                    <GridViewColumn Header="Protocol" DisplayMemberBinding="{Binding Protocol}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <StackPanel Margin="0,0,5,0" Orientation="Horizontal" Background="AliceBlue">
+            <Button Name="IntegraBtn" Content="Integra" Margin="2,4,2,0" MinWidth="80"></Button>
+            <Button Name="OtfBtn" Content="Otf" Margin="2" MinWidth="80"></Button>
+            <Button Name="IntegraConfigBtn" Content="IntegraConfig" Margin="2" MinWidth="80"></Button>
+            <Button Name="DebugLogBtn" Content="DebugLog" Margin="2" MinWidth="80"></Button>
+        </StackPanel>
+
+        <controls:MetroAnimatedTabControl Grid.Row="5" Grid.Column="1">
+            <TabItem Header="Integra">
+                <local:SoftwareView></local:SoftwareView>
+            </TabItem>
+            <TabItem Header="OTF">
+                <local:SoftwareView></local:SoftwareView>
+            </TabItem>
+            <TabItem Header="Reports">
+                <local:SoftwareView></local:SoftwareView>
+            </TabItem>
+        </controls:MetroAnimatedTabControl>
+
+    </StackPanel>
 </controls:MetroWindow>
