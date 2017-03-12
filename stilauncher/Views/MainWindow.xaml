@@ -4,8 +4,19 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:uc="clr-namespace:WPFUserControl;assembly=WPFUserControl"
         xmlns:local="clr-namespace:stilauncher.Views"
-        Title="STILauncher" Height="350" Width="525" >
+        Title="STILauncher" Height="500" Width="700" >
 
+    <Window.Resources>
+        <DataTemplate x:Key="ConfigListBoxTemplate" >
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="{Binding Path=Name}" FontSize="20" FontWeight="Bold" />
+                <TextBlock Text="{Binding Path=IntegraFolder}" />
+                <TextBlock Text="{Binding Path=OTFFolder}" />
+                <Button Content="Delete" Click="DeleteConfig_Clicked"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+            
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
             <controls:Flyout x:Name="DownloadFlyout"
@@ -17,38 +28,55 @@
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
 
-    <StackPanel>
-        <local:EditView></local:EditView>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <Grid DockPanel.Dock="Top" >
+                <Rectangle Fill="AliceBlue"></Rectangle>
+                <TextBlock Margin="5" HorizontalAlignment="Center" FontSize="18">
+                    Configurations
+                </TextBlock>
+            </Grid>
+            <Button DockPanel.Dock="Bottom" Name="AddBtn" Content="Add" Margin="20" Width="80"></Button>
+            <ListBox Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True"
+                Name="ConfigListBox" ItemsSource="{Binding Path=ConfigList}" ItemTemplate="{StaticResource ConfigListBoxTemplate}" >
+            </ListBox>
+        </DockPanel>
         
-        <ListView Grid.Row="3" Grid.Column="2" Margin="0,5,5,0" ItemsSource="{Binding SoftwareVersions}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Software" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" />
-                    <GridViewColumn Header="Build Time" DisplayMemberBinding="{Binding BuildTime}" />
-                    <GridViewColumn Header="Protocol" DisplayMemberBinding="{Binding Protocol}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <StackPanel Margin="0,0,5,0" Orientation="Horizontal" Background="AliceBlue">
-            <Button Name="IntegraBtn" Content="Integra" Margin="2,4,2,0" MinWidth="80"></Button>
-            <Button Name="OtfBtn" Content="Otf" Margin="2" MinWidth="80"></Button>
-            <Button Name="IntegraConfigBtn" Content="IntegraConfig" Margin="2" MinWidth="80"></Button>
-            <Button Name="DebugLogBtn" Content="DebugLog" Margin="2" MinWidth="80"></Button>
+        <StackPanel Grid.Column="1">
+            <ListView Margin="0,5,5,0" ItemsSource="{Binding SoftwareVersions}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Software" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" />
+                        <GridViewColumn Header="Build Time" DisplayMemberBinding="{Binding BuildTime}" />
+                        <GridViewColumn Header="Protocol" DisplayMemberBinding="{Binding Protocol}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Margin="0,0,5,0" Orientation="Horizontal" Background="AliceBlue">
+                <Button Name="IntegraBtn" Content="Integra" Margin="2,4,2,0" MinWidth="80"></Button>
+                <Button Name="OtfBtn" Content="Otf" Margin="2" MinWidth="80"></Button>
+                <Button Name="IntegraConfigBtn" Content="IntegraConfig" Margin="2" MinWidth="80"></Button>
+                <Button Name="DebugLogBtn" Content="DebugLog" Margin="2" MinWidth="80"></Button>
+            </StackPanel>
+
+            <controls:MetroAnimatedTabControl>
+                <TabItem Header="Integra">
+                    <local:SoftwareView></local:SoftwareView>
+                </TabItem>
+                <TabItem Header="OTF">
+                    <local:SoftwareView></local:SoftwareView>
+                </TabItem>
+                <TabItem Header="Reports">
+                    <local:SoftwareView></local:SoftwareView>
+                </TabItem>
+            </controls:MetroAnimatedTabControl>
         </StackPanel>
-
-        <controls:MetroAnimatedTabControl Grid.Row="5" Grid.Column="1">
-            <TabItem Header="Integra">
-                <local:SoftwareView></local:SoftwareView>
-            </TabItem>
-            <TabItem Header="OTF">
-                <local:SoftwareView></local:SoftwareView>
-            </TabItem>
-            <TabItem Header="Reports">
-                <local:SoftwareView></local:SoftwareView>
-            </TabItem>
-        </controls:MetroAnimatedTabControl>
-
-    </StackPanel>
+    </Grid>
 </controls:MetroWindow>

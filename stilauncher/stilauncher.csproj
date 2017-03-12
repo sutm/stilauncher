@@ -84,14 +84,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Software.cs" />
     <Compile Include="Services\SoftwareInfo.cs" />
+    <Compile Include="ViewModels\ConfigViewModel.cs" />
     <Compile Include="ViewModels\SoftwareViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\EditView.xaml.cs">
-      <DependentUpon>EditView.xaml</DependentUpon>
+    <Compile Include="Views\EditWindow.xaml.cs">
+      <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SoftwareView.xaml.cs">
       <DependentUpon>SoftwareView.xaml</DependentUpon>
@@ -104,7 +106,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EditView.xaml">
+    <Page Include="Views\EditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

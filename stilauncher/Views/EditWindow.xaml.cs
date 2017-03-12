@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace stilauncher.Views
 {
     /// <summary>
-    /// Interaction logic for EditView.xaml
+    /// Interaction logic for EditWindow.xaml
     /// </summary>
-    public partial class EditView : UserControl
+    public partial class EditWindow : Window
     {
-        public EditView()
+        public EditWindow()
         {
             InitializeComponent();
         }

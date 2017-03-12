@@ -13,10 +13,20 @@ namespace stilauncher.ViewModels
     class ViewModel : ViewModelBase
     {
         private Platform platform;
+        private ConfigViewModel configViewModel;
 
         public ViewModel()
         {
             this.platform = new Platform();
+            this.configViewModel = new ConfigViewModel();
+        }
+
+        public ObservableCollection<Config> ConfigList
+        {
+            get
+            {
+                return configViewModel.ConfigList;
+            }
         }
 
         public ObservableCollection<Software> SoftwareVersions
@@ -27,10 +37,6 @@ namespace stilauncher.ViewModels
                 softwareList.Add(new Software { Name = "OTF3D", Version = "11.06.01.00", BuildTime = DateTime.Parse("20 Sep 2014"), Protocol = "3.06" });
                 return softwareList;
             }
-
-  
         }
-
-        
     }
 }

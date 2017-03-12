@@ -27,7 +27,7 @@
                   ItemsSource="{Binding ServerFolder}">
         </ComboBox>
         <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,5,5,0"></ComboBox>
-        <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" Content="Include Beta"/>
+        <CheckBox Grid.Row="3" Grid.Column="1" Margin="0,5,0,0" VerticalAlignment="Bottom" Content="Include Beta"/>
         
         
     </Grid>
