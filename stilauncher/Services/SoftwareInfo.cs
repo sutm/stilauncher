@@ -16,7 +16,7 @@ namespace stilauncher.Services
         {
             if (m_IntegraServerFolder == null)
             {
-                m_IntegraServerFolder = new List<string>(Directory.EnumerateDirectories("d:\\Projects")); // TODO: configurable
+                m_IntegraServerFolder = new List<string>(Directory.EnumerateDirectories(@"C:\Users\sutm\Projects")); // TODO: configurable
             }
             return m_IntegraServerFolder;
         }
@@ -25,7 +25,7 @@ namespace stilauncher.Services
         {
             if (m_OTFServerFolder == null)
             {
-                m_OTFServerFolder = new List<string>(Directory.EnumerateDirectories("d:\\Projects"));
+                m_OTFServerFolder = new List<string>(Directory.EnumerateDirectories(@"C:\Users\sutm\Projects"));
             }
             return m_OTFServerFolder;
         }

@@ -7,13 +7,58 @@
         Title="STILauncher" Height="500" Width="700" >
 
     <Window.Resources>
+        <Style x:Key="TransparentButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
         <DataTemplate x:Key="ConfigListBoxTemplate" >
-            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
-                <TextBlock Text="{Binding Path=Name}" FontSize="13" FontWeight="Bold" />
-                <TextBlock Text="{Binding Path=IntegraFolder}" />
-                <TextBlock Text="{Binding Path=OTFFolder}" />
-                <Button Content="Delete" Click="DeleteConfig_Clicked"/>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="13" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Path=IntegraFolder}" />
+                    <TextBlock Text="{Binding Path=OTFFolder}" />
+                </StackPanel>
+                
+                <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" 
+                        Style="{StaticResource TransparentButton}"
+                        Click="EditConfig_Clicked">
+                    <Rectangle Width="15" Height="15" 
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </Grid>
         </DataTemplate>
     </Window.Resources>
             
@@ -30,19 +75,16 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition MinWidth="400" />
         </Grid.ColumnDefinitions>
 
         <DockPanel Background="AliceBlue">
-            <Grid DockPanel.Dock="Top" >
-                <Rectangle Fill="AliceBlue"></Rectangle>
-                <TextBlock Margin="5" HorizontalAlignment="Center" FontSize="18">
-                    Configurations
-                </TextBlock>
-            </Grid>
+            <TextBlock DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" FontSize="18" >
+                Configurations
+            </TextBlock>
             <Button DockPanel.Dock="Bottom" Name="AddBtn" Content="Add" Margin="20" Width="80"></Button>
-            <ListBox Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True" Background="AliceBlue" 
+            <ListBox Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsSynchronizedWithCurrentItem="True"  
                 Name="ConfigListBox" ItemsSource="{Binding Path=ConfigViewModel.ConfigList}" ItemTemplate="{StaticResource ConfigListBoxTemplate}" >
             </ListBox>
         </DockPanel>

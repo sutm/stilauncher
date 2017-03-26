@@ -36,7 +36,7 @@ namespace stilauncher
             this.downloadFlyout.IsOpen = !this.downloadFlyout.IsOpen;
         }
 
-        private void DeleteConfig_Clicked(object sender, RoutedEventArgs e)
+        private void EditConfig_Clicked(object sender, RoutedEventArgs e)
         {
             Button cmd = (Button)sender;
             if (cmd.DataContext is ViewModels.ConfigViewModel)
