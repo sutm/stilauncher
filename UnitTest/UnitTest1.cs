@@ -10,8 +10,8 @@ namespace UnitTest
         [TestMethod]
         public void TestIntegraServers()
         {
-            var softwareInfo = new SoftwareInfo();
-            var integraServerDirs = softwareInfo.GetIntegraServerFolder();
+            ISoftwareInfo service = new SoftwareInfo();
+            var integraServerDirs = service.GetServerFolders(@"C:\Users\sutm\Projects");
             foreach (var dir in integraServerDirs)
                 Console.WriteLine(dir);
         }

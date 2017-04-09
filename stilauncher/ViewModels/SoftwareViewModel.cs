@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.IO;
+using System.Collections.ObjectModel;
 using stilauncher.Models;
 using stilauncher.Services;
 using System.Text.RegularExpressions;
@@ -7,17 +8,13 @@ namespace stilauncher.ViewModels
 {
     class SoftwareViewModel : ViewModelBase
     {
-        Software _software;
-        SoftwareInfo _softwareInfo = new SoftwareInfo();
-
-        public Software Software
+        public string Rootpath { set; get; }
+        public Software Software { set; private get; }
+        public ISoftwareInfo Service { set; private get; }
+        
+        public ObservableCollection<DirectoryInfo> ServerFolders
         {
-            set { _software = value; }
-        }
-
-        public ObservableCollection<string> ServerFolder
-        {
-            get { return new ObservableCollection<string>(_softwareInfo.GetIntegraServerFolder()); }
+            get { return new ObservableCollection<DirectoryInfo>(Service.GetServerFolders(Rootpath)); }
         }
 
         public ObservableCollection<Software> SoftwareVersions
@@ -33,13 +30,13 @@ namespace stilauncher.ViewModels
 
         public string SoftwareVersion
         {
-            get { return _software.Version; }
+            get { return Software.Version; }
         }
 
         public bool IsBeta()
         {
             //Regex regex;
-            return _software.Version.EndsWith("a");
+            return Software.Version.EndsWith("a");
         }
     }
 }

@@ -23,21 +23,7 @@ namespace stilauncher.ViewModels
             this._softwareViewModel = new SoftwareViewModel();
         }
 
-        public ConfigViewModel ConfigViewModel
-        {
-            get
-            {
-                return _configViewModel;
-            }
-        }
-
-        public SoftwareViewModel SoftwareViewModel
-        {
-            get
-            {
-                return _softwareViewModel;
-            }
-        }
-
+        public ConfigViewModel ConfigViewModel { get => _configViewModel; }
+        public SoftwareViewModel SoftwareViewModel { get => _softwareViewModel; }
     }
 }
